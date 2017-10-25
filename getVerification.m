@@ -1,5 +1,5 @@
-load aveGallery.m gallery;
-load aveProb1.m prob;
+load aveGallery.mat gallery;
+load aveProb2.mat prob;
 
 veri = {};
 recog = {};
@@ -23,5 +23,5 @@ for i = 1 : rowProb
         recog = [recog, prob{i, :}];
     end
 end
-save Verification.mat veri;
-save Recognition.mat recog;
+save Verification2.mat veri;
+save Recognition2.mat recog;
