@@ -1,22 +1,23 @@
-load aveProb1.mat prob;
-load aveGallery.mat gallery;
+prob = load('Verification2.mat');
+gallery = load('aveGallery.mat');
 
-[rowProb, colProb] = size(prob);
-[rowGal, colGal] = size(gallery);
+[rowProb, colProb] = size(prob.veri);
+[rowGal, colGal] = size(gallery.res);
 genuine = {};
 imposter = {};
 
 for i = 1 : rowProb
-    name = prob{i, 1};
-    eye = prob{i, 4};
-    temp = prob{i, 2};
-    mask = prob{i, 3};
+    name = prob.veri{i, 1};
+    eye = prob.veri{i, 4};
+    temp = prob.veri{i, 2};
+    mask = prob.veri{i, 3};
     for j = 1 : rowGal
-        nameGal = gallery{i, 1};
-        eyeGal = gallery{i, 4};
-        tempGal = gallery{i, 2};
-        maskGal = gallery{i, 3};
-        hd = gethammingdistance(temp, mask, tempGal, maskGal, 0); 
+        nameGal = gallery.res{j, 1};
+        eyeGal = gallery.res{j, 4};
+        tempGal = gallery.res{j, 2};
+        maskGal = gallery.res{j, 3};
+        hd = gethammingdistance(temp, mask, tempGal, maskGal, 1);
+        disp(hd);
         if strcmpi(nameGal, name) && strcmpi(eye, eyeGal)
             genuine = [genuine; hd];
         else
@@ -24,5 +25,5 @@ for i = 1 : rowProb
         end
     end
 end
-save Genuine.mat genuine;
-save Imposter.mat imposter;
+save Genuine2.mat genuine;
+save Imposter2.mat imposter;

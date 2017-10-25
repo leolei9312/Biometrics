@@ -1,26 +1,26 @@
-load aveGallery.mat gallery;
-load aveProb2.mat prob;
+gallery = load('aveGallery.mat');
+prob = load('aveProb2.mat');
 
 veri = {};
 recog = {};
 
-[rowProb, colProb] = size(prob);
-[rowGal, colGal] = size(gallery);
+[rowProb, colProb] = size(prob.res);
+[rowGal, colGal] = size(gallery.res);
 for i = 1 : rowProb
-    name = prob{i, 1};
-    eye = prob{i, 4};
+    name = prob.res{i, 1};
+    eye = prob.res{i, 4};
     flag = false;
     for j = 1 : rowGal
-        nameGal = gallery{i, 1};
-        eyeGal = gallery{i, 4};
+        nameGal = gallery.res{j, 1};
+        eyeGal = gallery.res{j, 4};
         if strcmpi(name, nameGal)
-            veri = [veri; prob{i, :}];
+            veri = [veri; {prob.res{i, 1}, prob.res{i, 2}, prob.res{i, 3}, prob.res{i, 4}}];
             flag = true;
             break;
         end
     end
     if ~flag
-        recog = [recog, prob{i, :}];
+        recog = [recog; {prob.res{i, 1}, prob.res{i, 2}, prob.res{i, 3}, prob.res{i, 4}}];
     end
 end
 save Verification2.mat veri;
