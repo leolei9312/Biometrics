@@ -1,27 +1,27 @@
-gallery = load('aveGallery.mat');
-prob = load('aveProb2.mat');
+gallery = load('Gallery.mat');
+prob = load('Prob1.mat');
 
 veri = {};
 recog = {};
 
-[rowProb, colProb] = size(prob.res);
-[rowGal, colGal] = size(gallery.res);
+[rowProb, colProb] = size(prob.matrix);
+[rowGal, colGal] = size(gallery.matrix);
 for i = 1 : rowProb
-    name = prob.res{i, 1};
-    eye = prob.res{i, 4};
+    name = prob.matrix{i, 1};
+    eye = prob.matrix{i, 4};
     flag = false;
     for j = 1 : rowGal
-        nameGal = gallery.res{j, 1};
-        eyeGal = gallery.res{j, 4};
+        nameGal = gallery.matrix{j, 1};
+        eyeGal = gallery.matrix{j, 4};
         if strcmpi(name, nameGal)
-            veri = [veri; {prob.res{i, 1}, prob.res{i, 2}, prob.res{i, 3}, prob.res{i, 4}}];
+            veri = [veri; {prob.matrix{i, 1}, prob.matrix{i, 2}, prob.matrix{i, 3}, prob.matrix{i, 4}}];
             flag = true;
             break;
         end
     end
     if ~flag
-        recog = [recog; {prob.res{i, 1}, prob.res{i, 2}, prob.res{i, 3}, prob.res{i, 4}}];
+        recog = [recog; {prob.matrix{i, 1}, prob.matrix{i, 2}, prob.matrix{i, 3}, prob.matrix{i, 4}}];
     end
 end
-save Verification2.mat veri;
-save Recognition2.mat recog;
+save VerificationProb1.mat veri;
+save RecognitionProb1.mat recog;
