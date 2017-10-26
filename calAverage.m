@@ -37,6 +37,10 @@ while cur < row
     res = [res; {matrix{cur, 1}, leftTemp, leftMask, 'Left'}];
     res = [res; {matrix{cur, 1}, rightTemp, rightMask, 'Right'}];
     cur = cur + 1;
+    leftTemp = zeros(20, 480);
+    leftMask = zeros(20, 480);
+    rightTemp = zeros(20, 480);
+    rightMask = zeros(20, 480);
 end
 disp(res);
 save aveProb2.mat res;
