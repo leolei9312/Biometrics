@@ -3,30 +3,34 @@ gallery = load('Gallery.mat');
 
 [rowProb, colProb] = size(prob.veri);
 [rowGal, colGal] = size(gallery.matrix);
-maps = {};
-
-for i = 1 : rowProb
-    disp(i);
-    map = {};
-    name = prob.veri{i, 1};
-    eye = prob.veri{i, 4};
-    temp = prob.veri{i, 2};
-    mask = prob.veri{i, 3};
-    for j = 1 : rowGal
-        nameGal = gallery.matrix{j, 1};
-        eyeGal = gallery.matrix{j, 4};
-        tempGal = gallery.matrix{j, 2};
-        maskGal = gallery.matrix{j, 3};
-        hd = gethammingdistance(temp, mask, tempGal, maskGal, 1);
-        if isnan(hd)
-            continue;
-        end
-        map = [map; {nameGal, hd}];
-    end
-    sorted = sortrows(map, [2]);
-    maps = [maps; {name, sorted}];
-end
-save sortedProb1CMC.mat maps;
+% maps = {};
+% 
+% for i = 1 : rowProb
+%     disp(i);
+%     map = {};
+%     name = prob.veri{i, 1};
+%     eye = prob.veri{i, 4};
+%     temp = prob.veri{i, 2};
+%     mask = prob.veri{i, 3};
+%     for j = 1 : rowGal
+%         nameGal = gallery.matrix{j, 1};
+%         eyeGal = gallery.matrix{j, 4};
+%         tempGal = gallery.matrix{j, 2};
+%         maskGal = gallery.matrix{j, 3};
+%         hd = gethammingdistance(temp, mask, tempGal, maskGal, 1);
+%         if isnan(hd)
+%             continue;
+%         end
+%         map = [map; {nameGal, hd}];
+%     end
+%     [tempRow, tempCol] = size(map);
+%     if tempRow == 0 || tempCol == 0
+%        continue; 
+%     end
+%     sorted = sortrows(map, [2]);
+%     maps = [maps; {name, sorted}];
+% end
+% save sortedProb1CMC.mat maps;
 
 maps = load('sortedProb1CMC.mat');
 maps = maps.maps;
