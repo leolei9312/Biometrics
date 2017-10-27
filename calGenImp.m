@@ -1,4 +1,4 @@
-function calGenImp(gal, probe, gen, imp)
+function calGenImp(probe, gal, gen, imp)
 prob = load(probe);
 gallery = load(gal);
 
