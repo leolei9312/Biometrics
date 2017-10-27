@@ -20,10 +20,5 @@ plotGID('GenuineProb1.mat', 'ImposterProb1.mat');
 plotGID('GenuineProb2.mat', 'ImposterProb2.mat');
 
 % Draw CMC curve
-plotCMC('VerificationProb1.mat', 'Gallery.mat');
-plotCMC('VerificationProb2.mat', 'Gallery.mat');
-
-
-
-
-
+plotCMC('VerificationProb1.mat', 'Gallery.mat', 'sortedProb1CMC.mat');
+plotCMC('VerificationProb2.mat', 'Gallery.mat', 'sortedProb2CMC.mat');

@@ -1,4 +1,4 @@
-function plotCMC(probe, gal)
+function plotCMC(probe, gal, name)
 prob = load(probe);
 gallery = load(gal);
 
@@ -31,9 +31,9 @@ for i = 1 : rowProb
     sorted = sortrows(map, [2]);
     maps = [maps; {name, sorted}];
 end
-save sortedProb1CMC.mat maps;
+save(name,'maps');
 
-maps = load('sortedProb1CMC.mat');
+maps = load(name);
 maps = maps.maps;
 
 [rowmap, colmap] = size(maps);
