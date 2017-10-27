@@ -29,5 +29,5 @@ for i = 1 : rowProb
         end
     end
 end
-save gen genuine;
-save imp imposter;
+save(gen, 'genuine');
+save(imp, 'imposter');

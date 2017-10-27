@@ -39,4 +39,4 @@ for i = 3 : length(D)
     cd ../..;
     fclose(fid);
 end
-save name matrix
+save(name,'matrix')

@@ -24,5 +24,5 @@ for i = 1 : rowProb
         recog = [recog; {prob.matrix{i, 1}, prob.matrix{i, 2}, prob.matrix{i, 3}, prob.matrix{i, 4}}];
     end
 end
-save set1 veri;
-save set2 recog;
+save(set1,'veri');
+save(set2, 'recog');
