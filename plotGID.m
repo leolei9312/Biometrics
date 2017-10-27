@@ -1,4 +1,5 @@
-fileGenuine = load('GenuineProb2.mat');
+function plotGID(gen, imp)
+fileGenuine = load(gen);
 matrix = fileGenuine.genuine;
 mapGenuine = containers.Map(0.0, 0);
 [rowG, col] = size(matrix);
@@ -22,7 +23,7 @@ genuineX = cell2mat(keys(mapGenuine));
 genuineY = cell2mat(values(mapGenuine)) / rowG;
 
 
-fileImposter = load('ImposterProb2.mat');
+fileImposter = load(imp);
 matrix = fileImposter.imposter;
 mapImposter = containers.Map(0.0, 0);
 [rowI, col] = size(matrix);
