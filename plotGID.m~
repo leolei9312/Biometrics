@@ -43,7 +43,7 @@ end
 imposterX = cell2mat(keys(mapImposter));
 imposterY = cell2mat(values(mapImposter)) / rowI;
 
-plot(genuineX, genuineY, 'r', imposterX, imposterY, 'b');
+% plot(genuineX, genuineY, 'r', imposterX, imposterY, 'b');
 
 
 % Draw ROC
@@ -78,11 +78,11 @@ while index <= 1
     index = index + 0.01;
 end
 
-plot(TMR, FMR);
-xlabel('FMR');
-ylabel('TMR');
+% plot(TMR, FMR);
+% xlabel('FMR');
+% ylabel('TMR');
 
-
+% Draw CMC
 
 
 

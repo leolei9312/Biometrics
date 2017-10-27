@@ -1,0 +1,55 @@
+prob = load('VerificationProb2.mat');
+gallery = load('Gallery.mat');
+
+[rowProb, colProb] = size(prob.veri);
+[rowGal, colGal] = size(gallery.matrix);
+% maps = {};
+
+% for i = 1 : rowProb
+%     disp(i);
+%     map = {};
+%     name = prob.veri{i, 1};
+%     eye = prob.veri{i, 4};
+%     temp = prob.veri{i, 2};
+%     mask = prob.veri{i, 3};
+%     for j = 1 : rowGal
+%         nameGal = gallery.matrix{j, 1};
+%         eyeGal = gallery.matrix{j, 4};
+%         tempGal = gallery.matrix{j, 2};
+%         maskGal = gallery.matrix{j, 3};
+%         hd = gethammingdistance(temp, mask, tempGal, maskGal, 1);
+%         if isnan(hd)
+%             continue;
+%         end
+%         map = [map; {nameGal, hd}];
+%     end
+%     sorted = sortrows(map, [2]);
+%     maps = [maps; {name, sorted}];
+% end
+% disp(maps);
+
+
+maps = load('sortedProb2CMC');
+maps = maps.maps;
+
+[rowmap, colmap] = size(maps);
+
+for k = 1 : rowGal
+    count = 0;
+    for i = 1 : rowmap
+        name = maps{i, 1};
+        sortedMap = maps{i, 2};
+        [row, col] = size(sortedMap);
+        if k >= row
+           count = count + 1;
+           break;
+        end
+        for j = 1 : k
+            if 
+        end
+    end
+    
+    
+end
+
+
