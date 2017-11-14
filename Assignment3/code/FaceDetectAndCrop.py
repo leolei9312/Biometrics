@@ -57,7 +57,8 @@ def faceCrop(dest, imagePattern,boxScale=1):
     for img in imgList:
         fileName = img.split('/')[-1]
         print 'croping: ' + fileName
-
+        if fileName[0] == '.':
+            continue
         pil_im=Image.open(img)
         cv_im=pil2cvGrey(pil_im)
         faces=DetectFace(cv_im,faceCascade)
