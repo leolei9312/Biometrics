@@ -80,7 +80,7 @@ for threshold in range(101):
             true_match += genuine[i]
         if i in imposter.keys():
             false_match += imposter[i]
-    TMR.append(true_match/sum_gen)
-    FMR.append(false_match/sum_imp)
+    TMR.append(true_match/float(sum_gen))
+    FMR.append(false_match/float(sum_imp))
 
 plt.plot(FMR, TMR)
