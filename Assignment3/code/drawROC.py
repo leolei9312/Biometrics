@@ -7,15 +7,17 @@ Created on Wed Nov 15 16:12:58 2017
 import os
 import matplotlib.pyplot as plt
 from compareFaces import *
+import numpy as np
 
 gallery_dir  = '../gallery_face/'
 probe_dir = '../prob_face/'
 
 genuine = {}
 imposter = {}
-
+confidenceRes = []
 for prob_folder in os.listdir(probe_dir):
 #    print prob_folder # personId in probe
+    confidenceRes.append((prob_folder, []))
     for filename in os.listdir(probe_dir + prob_folder):
         image1 = probe_dir + prob_folder + '/' + filename
         for gal_folder in os.listdir(gallery_dir):
@@ -27,6 +29,8 @@ for prob_folder in os.listdir(probe_dir):
                 result = compare(image1, image2)
                 if result is not None:
                     result = 100 - int(round(result))
+                    #save to confidence csv
+                    confidenceRes[len(confidenceRes) - 1][1].append((gal_folder, result))
 #                    print result
                     if(prob_folder == gal_folder):
                         if(result not in genuine.keys()):
@@ -38,11 +42,13 @@ for prob_folder in os.listdir(probe_dir):
                         imposter[result] = imposter[result] + 1
         print genuine
         print imposter
-    
+
 
 #print genuine
 #print imposter
-
+with open('ConfidenceResult.csv', 'wb') as myfile:
+    wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
+    wr.writerow(confidenceRes)
 
 
 
@@ -50,11 +56,11 @@ for prob_folder in os.listdir(probe_dir):
 #imposter = {10: 6, 15: 10, 20: 4}
 
 # plot genuine and imposter distribution
-gen = sorted(genuine.items()) 
+gen = sorted(genuine.items())
 x, y = zip(*gen)
 imp = sorted(imposter.items())
-w, z = zip(*imp)  
-     
+w, z = zip(*imp)
+
 plt.plot(x, y)
 plt.plot(w, z)
 plt.show()
@@ -78,10 +84,3 @@ for threshold in range(101):
     FMR.append(false_match/sum_imp)
 
 plt.plot(FMR, TMR)
-    
-
-
-
-                   
-                
-    
