@@ -31,7 +31,12 @@ with open('ConfidenceResult.csv', 'a') as myfile:
                 if gal_folder[0] == '.':
                     continue
     #            print gal_folder # personId in gallery
-                for fn in os.listdir(gallery_dir + gal_folder):
+                picList = os.listdir(gallery_dir + gal_foler)
+                if len(picList) > 15:
+                    randomPic = np.random.choice(picList, 15, replace=False)
+                else:
+                    randomPic = picList
+                for fn in randomPic:
                     if fn[0] == '.':
                         continue
                     image2 = gallery_dir + gal_folder + '/' + fn
